@@ -29,6 +29,7 @@ def get_paper(page,index):
             if index==0:
                 print(a_list[index].tail)   
 
+#在知网的查询框中输入体育学刊，获得cookie
 def get_cookie():
     driver.get('http://kns.cnki.net/kns/brief/default_result.aspx')
     time.sleep(5)
@@ -40,6 +41,7 @@ def get_cookie():
     
 
 #缺少paperid
+#点击论文列表中的论文，进入到论文的页面，获得引证论文的url
 def get_url(num):
     elements=driver.find_elements_by_xpath('//table[@class="GridTableContent"]//tr[@bgcolor]')
     for element in elements:
@@ -113,8 +115,10 @@ if __name__=="__main__":
     db=dbmanager_paper('root','12345','127.0.0.1','zhiwang')
     num=0
     now_page=1
+    #抓包得到iframe中的url，由于有cookie，所以我们可以直接访问
     driver.get('http://kns.cnki.net/kns/brief/brief.aspx?ctl=4a7fde68-1a44-4852-8b23-1a70aeb4cf8b&dest=%E5%88%86%E7%BB%84%EF%BC%9A%E5%8F%91%E8%A1%A8%E5%B9%B4%E5%BA%A6%20%E6%98%AF%202003&action=5&dbPrefix=SCDB&PageName=ASP.brief_default_result_aspx&Param=%e5%b9%b4+%3d+%272003%27&SortType=(FFD%2c%27RANK%27)+desc&ShowHistory=1&isinEn=1')
 
+    #需要爬取16页的论文
     while(now_page<16):
         num=get_url(num)
         a_list=driver.find_elements_by_xpath('//div[@class="TitleLeftCell"]//a')
