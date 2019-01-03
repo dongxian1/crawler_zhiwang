@@ -52,7 +52,7 @@ if __name__=="__main__":
     header={
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'
         }
-    db=dbmanager_paper('root','Ll41655184165518','127.0.0.1','zhiwang')
+    db=dbmanager_paper('root','','127.0.0.1','zhiwang')
     while(True):
         status='finish'
         result=db.get_url()
